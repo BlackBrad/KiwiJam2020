@@ -10,21 +10,23 @@ public class Player : KinematicBody2D
 
 	private bool m_IsOnGround = false;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		
-	}
+	[Export]
+	private float _GroundWalkSpeed = 250.0f;
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	[Export]
+	private float _AirWalkSpeed = 180.0f;
 
-	public void GetInput()
-	{
-	}
+	[Export]
+	private float _Gravity = 400.0f;
+
+	[Export]
+	private float _GroundFriction = 32.0f;
+
+	[Export]
+	private float _AirFriction = 24.0f;
+
+	[Export]
+	private float _JumpVelocity = 380.0f;
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -38,14 +40,14 @@ public class Player : KinematicBody2D
 			direction = 1.0f;
 		}
 
-		float walkSpeed = 250.0f;
-		float gravity = 400.0f;
-		float friction = 32.0f;
+		float walkSpeed = _GroundWalkSpeed;
+		float gravity = _Gravity;
+		float friction = _GroundFriction;
 
 		if (!m_IsOnGround)
 		{
-			friction = 24.0f;
-			walkSpeed = 180.0f;
+			friction = _AirFriction;
+			walkSpeed = _AirWalkSpeed;
 		}
 		direction *= walkSpeed;
 
@@ -59,7 +61,7 @@ public class Player : KinematicBody2D
 			m_Velocity.y = 0.0f;
 			if (Input.IsActionJustPressed("jump"))
 			{
-				m_Velocity.y += -380.0f;
+				m_Velocity.y += -_JumpVelocity;
 			}
 		}
 
