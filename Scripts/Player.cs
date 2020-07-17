@@ -3,9 +3,6 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
 	private Vector2 m_Velocity = new Vector2();
 
 	private bool m_IsOnGround = false;
@@ -66,31 +63,4 @@ public class Player : KinematicBody2D
 		}
 
 	}
-
-	public override void _Ready()
-	{
-		GetNode("../Dough").Connect("body_entered", this, nameof(_OnDoughEntered));
-		GetNode("../SafeZone").Connect("body_entered", this, nameof(_OnSafeZoneEntered));
-	}
-
-	private void _OnDoughEntered(object body)
-	{
-		if (body == this)
-		{
-			GD.Print("Fell into the sour dough");
-			GetTree().ReloadCurrentScene();
-		}
-	}
-
-	private void _OnSafeZoneEntered(object body)
-	{
-		if (body == this)
-		{
-			GD.Print("Player entered safe zone");
-			// TODO: Transition to next level
-		}
-	}
 }
-
-
-
