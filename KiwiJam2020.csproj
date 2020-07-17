@@ -57,6 +57,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\Dough.cs" />
     <Compile Include="Scripts/Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
