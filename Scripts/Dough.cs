@@ -11,13 +11,14 @@ public class Dough : Area2D
 		GlobalPosition = p;
 	}
 
-    private void _OnBodyEntered(object body)
-    {
-        if (body is Player)
-        {
+	private void _OnBodyEntered(object body)
+	{
+		if (body is Player)
+		{
 			GD.Print("Fell into the sour dough");
-			GetTree().ReloadCurrentScene();
-        }
-    }
+			var sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.ReloadCurrentScene();
+		}
+	}
 
 }

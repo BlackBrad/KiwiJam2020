@@ -6,7 +6,6 @@
 extents = Vector2( 90.7782, 77.1443 )
 
 [node name="SafeZone" type="Area2D"]
-position = Vector2( 91.1138, 116.541 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

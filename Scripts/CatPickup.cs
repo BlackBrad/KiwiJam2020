@@ -13,14 +13,14 @@ public class CatPickup : Area2D
 		
 	}
 
-    private void _OnBodyEntered(object body)
-    {
-        if (body is Player)
-        {
-            GD.Print("Player picked up cat");
-            QueueFree();
-        }
-    }
+	private void _OnBodyEntered(object body)
+	{
+		if (body is Player)
+		{
+			GD.Print("Player picked up cat");
+			QueueFree();
+		}
+	}
 }
 
 

@@ -6,7 +6,6 @@
 extents = Vector2( 649.212, 1000 )
 
 [node name="Dough" type="Area2D"]
-position = Vector2( 521.646, 1557.77 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

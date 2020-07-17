@@ -3,12 +3,16 @@ using System;
 
 public class SafeZone : Area2D
 {
-    private void _OnBodyEntered(object body)
-    {
-        if (body is Player)
-        {
+	[Export]
+	private string _NextLevel = "TestLevel";
+
+	private void _OnBodyEntered(object body)
+	{
+		if (body is Player)
+		{
 			GD.Print("Player entered safe zone");
-			// TODO: Transition to next level
-        }
-    }
+			var sceneManager = (SceneManager)GetNode("/root/SceneManager");
+			sceneManager.GotoScene(_NextLevel);
+		}
+	}
 }
