@@ -67,12 +67,30 @@ public class Player : KinematicBody2D
 
 	}
 
+	public override void _Ready()
+	{
+		GetNode("../Dough").Connect("body_entered", this, nameof(_OnDoughEntered));
+		GetNode("../SafeZone").Connect("body_entered", this, nameof(_OnSafeZoneEntered));
+	}
+
 	private void _OnDoughEntered(object body)
 	{
-		GD.Print("Fell into the sour dough");
-		GetTree().ReloadCurrentScene();
-		// Replace with function body.
+		if (body == this)
+		{
+			GD.Print("Fell into the sour dough");
+			GetTree().ReloadCurrentScene();
+		}
+	}
+
+	private void _OnSafeZoneEntered(object body)
+	{
+		if (body == this)
+		{
+			GD.Print("Player entered safe zone");
+			// TODO: Transition to next level
+		}
 	}
 }
+
 
 
