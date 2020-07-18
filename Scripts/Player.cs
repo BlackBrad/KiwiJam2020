@@ -26,10 +26,10 @@ public class Player : KinematicBody2D
 	private float _JumpVelocity = 380.0f;
 
     [Export]
-    private float _WallJumpVerticalVelocity = 250.0f;
+    private float _WallJumpVerticalVelocity = 380.0f;
 
     [Export]
-    private float _WallJumpHorizontalVelocity = 600.0f;
+    private float _WallJumpHorizontalVelocity = 400.0f;
 
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
@@ -171,6 +171,12 @@ public class Player : KinematicBody2D
                     _Sprite.FlipH = false;
                     ChangeAnimationState("JumpStart");
                 }
+            }
+
+            // Jump height control
+            if (Input.IsActionJustReleased("jump") && _Velocity.y < 0.0f)
+            {
+                _Velocity.y = 0.0f;
             }
         }
 
