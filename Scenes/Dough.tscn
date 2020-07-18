@@ -5,13 +5,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 649.212, 1000 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 650, 1, 1 )
 flag_disable_z = true
@@ -20,7 +20,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 58.59
 scale_random = 0.6
-scale_curve = SubResource( 5 )
+scale_curve = SubResource( 3 )
 color = Color( 0.843137, 0.776471, 0.588235, 1 )
 hue_variation = 0.04
 hue_variation_random = 0.41
@@ -46,5 +46,5 @@ __meta__ = {
 position = Vector2( 0, -980 )
 amount = 128
 lifetime = 1.5
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
