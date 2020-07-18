@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/thank_the_lord.wav-449bec820e0958eca9dd192aa591b1ae.sample"
+
+[deps]
+
+source_file="res://audio/raw/bread/thank_the_lord.wav"
+dest_files=[ "res://.import/thank_the_lord.wav-449bec820e0958eca9dd192aa591b1ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

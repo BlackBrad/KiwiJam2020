@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/your_bread_and_butter.wav-4397a14c7eaaeea43ae31e3d3fcf7e02.sample"
+
+[deps]
+
+source_file="res://audio/stripped/bread/your_bread_and_butter.wav"
+dest_files=[ "res://.import/your_bread_and_butter.wav-4397a14c7eaaeea43ae31e3d3fcf7e02.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

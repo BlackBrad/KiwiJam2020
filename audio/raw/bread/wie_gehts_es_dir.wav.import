@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wie_gehts_es_dir.wav-8348cfa5e54c0626e2aa7150af7387e6.sample"
+
+[deps]
+
+source_file="res://audio/raw/bread/wie_gehts_es_dir.wav"
+dest_files=[ "res://.import/wie_gehts_es_dir.wav-8348cfa5e54c0626e2aa7150af7387e6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

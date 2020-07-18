@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/with_bread_all_sorrows_are_lost.wav-991a1b0bd1288b1b7122102fdf40d682.sample"
+
+[deps]
+
+source_file="res://audio/stripped/bread/with_bread_all_sorrows_are_lost.wav"
+dest_files=[ "res://.import/with_bread_all_sorrows_are_lost.wav-991a1b0bd1288b1b7122102fdf40d682.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
