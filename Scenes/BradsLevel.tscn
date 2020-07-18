@@ -20,11 +20,14 @@ position = Vector2( 58.5582, -67.2335 )
 position = Vector2( 58.5582, -377.375 )
 
 [node name="CatPickup2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 127.961, -1305.63 )
+position = Vector2( 114.493, -1305.06 )
 
 [node name="CatPickup3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 705.046, -3383.19 )
 
+[node name="CatPickup4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 229.449, -56.1009 )
+
 [node name="Dough" parent="." instance=ExtResource( 4 )]
-position = Vector2( 105.985, 1132.08 )
+position = Vector2( 327.54, 1119.77 )
 _Speed = 30.0
