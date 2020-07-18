@@ -61,10 +61,12 @@
     <Compile Include="Scripts\Dough.cs" />
     <Compile Include="Scripts/Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\FadeIn.cs" />
     <Compile Include="Scripts\NewGameButton.cs" />
     <Compile Include="Scripts\QuitButton.cs" />
     <Compile Include="Scripts\SafeZone.cs" />
     <Compile Include="Scripts\SceneManager.cs" />
+    <Compile Include="Scripts\TitleScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
