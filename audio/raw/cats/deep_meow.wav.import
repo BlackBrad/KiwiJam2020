@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/deep_meow.wav-40656885bf7a2b2e8c3e82a195130d58.sample"
+
+[deps]
+
+source_file="res://audio/raw/cats/deep_meow.wav"
+dest_files=[ "res://.import/deep_meow.wav-40656885bf7a2b2e8c3e82a195130d58.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/yummy_kitty.wav-f7fd70aeffbfd82018b0c2e513cb0ea2.sample"
+
+[deps]
+
+source_file="res://audio/stripped/bread/yummy_kitty.wav"
+dest_files=[ "res://.import/yummy_kitty.wav-f7fd70aeffbfd82018b0c2e513cb0ea2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

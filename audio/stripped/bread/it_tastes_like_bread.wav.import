@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/it_tastes_like_bread.wav-5b0ae99c7d41a1eecc1146dc82be3378.sample"
+
+[deps]
+
+source_file="res://audio/stripped/bread/it_tastes_like_bread.wav"
+dest_files=[ "res://.import/it_tastes_like_bread.wav-5b0ae99c7d41a1eecc1146dc82be3378.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
