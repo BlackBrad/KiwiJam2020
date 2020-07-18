@@ -3,9 +3,9 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	private Vector2 m_Velocity = new Vector2();
+	private Vector2 _Velocity = new Vector2();
 
-	private bool m_IsOnGround = false;
+	private bool _WasOnGround = false;
 
 	[Export]
 	private float _GroundWalkSpeed = 250.0f;
@@ -42,7 +42,23 @@ public class Player : KinematicBody2D
 
 	public void ChangeAnimationState(string stateName)
 	{
+		GD.Print(stateName);
 		_AnimStateMachine.Travel(stateName);
+		var path = _AnimStateMachine.GetTravelPath();
+		foreach (var segment in path)
+		{
+			GD.Print("-> ", segment);
+		}
+	}
+
+	public void YeetCat()
+	{
+		// Only allow cat yeeting if player is in the air
+		if (!IsOnFloor())
+		{
+			_Velocity.y += -_JumpVelocity;
+			ChangeAnimationState("AerialYeet");
+		}
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -59,50 +75,56 @@ public class Player : KinematicBody2D
 			_Sprite.FlipH = false;
 		}
 
-		if (Mathf.Abs(direction) > 0.0f)
+		if (_WasOnGround)
 		{
-			ChangeAnimationState("Run");
+			if (Mathf.Abs(direction) > 0.0f)
+			{
+				ChangeAnimationState("Run");
+			}
+			else
+			{
+				ChangeAnimationState("Idle");
+			}
+
+			_Velocity.y = 0.0f;
+			if (Input.IsActionJustPressed("jump"))
+			{
+				_Velocity.y += -_JumpVelocity;
+				ChangeAnimationState("JumpStart");
+			}
 		}
-		else
+
+		if (Input.IsActionJustPressed("yeet"))
 		{
-			ChangeAnimationState("Idle");
+			YeetCat();
 		}
 
 		float walkSpeed = _GroundWalkSpeed;
 		float gravity = _Gravity;
 		float friction = _GroundFriction;
 
-		if (!m_IsOnGround)
+		if (!_WasOnGround)
 		{
 			friction = _AirFriction;
 			walkSpeed = _AirWalkSpeed;
 		}
 		direction *= walkSpeed;
 
-		m_Velocity += new Vector2(direction, gravity * delta);
-		m_Velocity.x -= m_Velocity.x * friction * delta;
-		m_Velocity = MoveAndSlide(m_Velocity, new Vector2(0, -1));
+		_Velocity += new Vector2(direction, gravity * delta);
+		_Velocity.x -= _Velocity.x * friction * delta;
+		_Velocity = MoveAndSlide(_Velocity, new Vector2(0, -1));
 
-		if (IsOnFloor() && !m_IsOnGround)
+		if (IsOnFloor() && !_WasOnGround)
 		{
 			// Player impact animation
 			ChangeAnimationState("Landing");
 		}
 
-		m_IsOnGround = IsOnFloor();
-		if (IsOnFloor())
-		{
-			m_Velocity.y = 0.0f;
-			if (Input.IsActionJustPressed("jump"))
-			{
-				m_Velocity.y += -_JumpVelocity;
-				ChangeAnimationState("JumpStart");
-			}
-		}
-
-		if (!m_IsOnGround)
+		if (_WasOnGround && !IsOnFloor())
 		{
 			ChangeAnimationState("Falling");
 		}
+
+		_WasOnGround = IsOnFloor();
 	}
 }
