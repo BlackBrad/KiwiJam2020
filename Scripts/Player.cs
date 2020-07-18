@@ -11,7 +11,7 @@ public class Player : KinematicBody2D
 	private float _GroundWalkSpeed = 250.0f;
 
 	[Export]
-	private float _AirWalkSpeed = 180.0f;
+	private float _AirWalkSpeed = 20.0f;
 
 	[Export]
 	private float _Gravity = 400.0f;
@@ -20,10 +20,16 @@ public class Player : KinematicBody2D
 	private float _GroundFriction = 32.0f;
 
 	[Export]
-	private float _AirFriction = 24.0f;
+	private float _AirFriction = 4.0f;
 
 	[Export]
 	private float _JumpVelocity = 380.0f;
+
+    [Export]
+    private float _WallJumpVerticalVelocity = 380.0f;
+
+    [Export]
+    private float _WallJumpHorizontalVelocity = 400.0f;
 
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
@@ -31,6 +37,9 @@ public class Player : KinematicBody2D
 	private AnimationNodeStateMachinePlayback _AnimStateMachine;
     private PackedScene _YeetedCatPrefab;
     private Timer _YeetedCatDelayTimer;
+
+    private Node2D _RightWallRaycasts;
+    private Node2D _LeftWallRaycasts;
 
 	public override void _Ready()
 	{
@@ -42,6 +51,8 @@ public class Player : KinematicBody2D
 		_AnimStateMachine = (AnimationNodeStateMachinePlayback)
 								_AnimationTree.Get("parameters/playback");
 
+        _RightWallRaycasts = GetNode<Node2D>("RightWallRaycasts");
+        _LeftWallRaycasts = GetNode<Node2D>("LeftWallRaycasts");
 
         _YeetedCatPrefab = (PackedScene)GD.Load("res://Scenes/YeetedCat.tscn");
 	}
@@ -61,6 +72,20 @@ public class Player : KinematicBody2D
                 //GD.Print("-> ", segment);
             //}
         }
+    }
+
+    public bool WallRaycast(Node2D parent)
+    {
+        foreach (var child in parent.GetChildren())
+        {
+            var raycast = (RayCast2D)child;
+            if (raycast.IsColliding())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 	public void YeetCat()
@@ -123,10 +148,38 @@ public class Player : KinematicBody2D
 		float friction = _GroundFriction;
 
 		if (!_WasOnGround)
-		{
-			friction = _AirFriction;
-			walkSpeed = _AirWalkSpeed;
-		}
+        {
+            friction = _AirFriction;
+            walkSpeed = _AirWalkSpeed;
+
+            if (WallRaycast(_RightWallRaycasts))
+            {
+                if (Input.IsActionJustPressed("jump"))
+                {
+                    _Velocity.y = -_WallJumpVerticalVelocity;
+                    _Velocity.x = -_WallJumpHorizontalVelocity;
+                    _Sprite.FlipH = true;
+                    ChangeAnimationState("JumpStart");
+                }
+            }
+            else if (WallRaycast(_LeftWallRaycasts))
+            {
+                if (Input.IsActionJustPressed("jump"))
+                {
+                    _Velocity.y = -_WallJumpVerticalVelocity;
+                    _Velocity.x = _WallJumpHorizontalVelocity;
+                    _Sprite.FlipH = false;
+                    ChangeAnimationState("JumpStart");
+                }
+            }
+
+            // Jump height control
+            if (Input.IsActionJustReleased("jump") && _Velocity.y < 0.0f)
+            {
+                _Velocity.y = 0.0f;
+            }
+        }
+
 		direction *= walkSpeed;
 
 		_Velocity += new Vector2(direction, gravity * delta);
