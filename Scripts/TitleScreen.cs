@@ -18,7 +18,7 @@ public class TitleScreen : Control
 //  {
 //      
 //  }
-	private void _on_NewGameButton_ButtonPressed(string nextLevel)
+	private void _LevelChange(string nextLevel)
 	{
 		this.queueScene = nextLevel;
 		FadeIn fadeIn = GetNode<FadeIn>("FadeIn");
@@ -35,7 +35,4 @@ public class TitleScreen : Control
 		// Replace with function body.
 	}
 }
-
-
-
 

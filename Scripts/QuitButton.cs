@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class QuitButton : Button
+public class QuitButton : CustomMenuButton
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -19,7 +19,7 @@ public class QuitButton : Button
 //      
 //  }
 	
-	private void _on_QuitButton_pressed()
+	private void _on_CustomMenuButton_pressed()
 	{
 		GetTree().Quit();
 		// Replace with function body.
