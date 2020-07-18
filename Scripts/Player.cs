@@ -29,15 +29,21 @@ public class Player : KinematicBody2D
 	private Sprite _Sprite;
 	private AnimationTree _AnimationTree;
 	private AnimationNodeStateMachinePlayback _AnimStateMachine;
+    private PackedScene _YeetedCatPrefab;
+    private Timer _YeetedCatDelayTimer;
 
 	public override void _Ready()
 	{
 		_AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_Sprite = GetNode<Sprite>("Sprite");
 		_AnimationTree = GetNode<AnimationTree>("AnimationTree");
+        _YeetedCatDelayTimer = GetNode<Timer>("YeetedCatDelayTimer");
 
 		_AnimStateMachine = (AnimationNodeStateMachinePlayback)
 								_AnimationTree.Get("parameters/playback");
+
+
+        _YeetedCatPrefab = (PackedScene)GD.Load("res://Scenes/YeetedCat.tscn");
 	}
 
 	public void ChangeAnimationState(string stateName)
@@ -56,8 +62,11 @@ public class Player : KinematicBody2D
 		// Only allow cat yeeting if player is in the air
 		if (!IsOnFloor())
 		{
-			_Velocity.y += -_JumpVelocity;
-			ChangeAnimationState("AerialYeet");
+            if (_YeetedCatDelayTimer.TimeLeft <= 0.0f)
+            {
+                ChangeAnimationState("AerialYeet");
+                _YeetedCatDelayTimer.Start();
+            }
 		}
 	}
 
@@ -127,4 +136,14 @@ public class Player : KinematicBody2D
 
 		_WasOnGround = IsOnFloor();
 	}
+
+    public void _OnYeetedCatDelayTimerTimeout()
+    {
+        _Velocity.y += -_JumpVelocity;
+
+        var yeetedCat = (YeetedCat)_YeetedCatPrefab.Instance();
+        GetNode("../").AddChild(yeetedCat);
+        yeetedCat.Yeet(GlobalPosition);
+        _YeetedCatDelayTimer.Stop();
+    }
 }
