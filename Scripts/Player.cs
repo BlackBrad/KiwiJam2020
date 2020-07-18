@@ -25,12 +25,25 @@ public class Player : KinematicBody2D
 	[Export]
 	private float _JumpVelocity = 380.0f;
 
-	private AnimatedSprite _AnimatedSprite;
+    private AnimationPlayer _AnimationPlayer;
+    private Sprite _Sprite;
+    private AnimationTree _AnimationTree;
+    private AnimationNodeStateMachinePlayback _AnimStateMachine;
 
-	public override void _Ready()
-	{
-		_AnimatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
-	}
+    public override void _Ready()
+    {
+        _AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        _Sprite = GetNode<Sprite>("Sprite");
+        _AnimationTree = GetNode<AnimationTree>("AnimationTree");
+
+        _AnimStateMachine = (AnimationNodeStateMachinePlayback)
+                                _AnimationTree.Get("parameters/playback");
+    }
+
+    public void ChangeAnimationState(string stateName)
+    {
+        _AnimStateMachine.Travel(stateName);
+    }
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -38,22 +51,22 @@ public class Player : KinematicBody2D
 		if (Input.IsActionPressed("walk_left"))
 		{
 			direction = -1.0f;
-			_AnimatedSprite.FlipH = true;
+            _Sprite.FlipH = true;
 		}
 		if (Input.IsActionPressed("walk_right"))
 		{
 			direction = 1.0f;
-			_AnimatedSprite.FlipH = false;
+            _Sprite.FlipH = false;
 		}
 
-		if (Mathf.Abs(direction) > 0.0f)
-		{
-			_AnimatedSprite.Animation = "run_R";
-		}
-		else
-		{
-			_AnimatedSprite.Animation = "idle_R";
-		}
+        if (Mathf.Abs(direction) > 0.0f)
+        {
+            ChangeAnimationState("Run");
+        }
+        else
+        {
+            ChangeAnimationState("Idle");
+        }
 
 		float walkSpeed = _GroundWalkSpeed;
 		float gravity = _Gravity;
@@ -70,6 +83,12 @@ public class Player : KinematicBody2D
 		m_Velocity.x -= m_Velocity.x * friction * delta;
 		m_Velocity = MoveAndSlide(m_Velocity, new Vector2(0, -1));
 
+        if (IsOnFloor() && !m_IsOnGround)
+        {
+            // Player impact animation
+            ChangeAnimationState("Landing");
+        }
+
 		m_IsOnGround = IsOnFloor();
 		if (IsOnFloor())
 		{
@@ -77,8 +96,13 @@ public class Player : KinematicBody2D
 			if (Input.IsActionJustPressed("jump"))
 			{
 				m_Velocity.y += -_JumpVelocity;
+                ChangeAnimationState("JumpStart");
 			}
 		}
 
+        if (!m_IsOnGround)
+        {
+            ChangeAnimationState("Falling");
+        }
 	}
 }

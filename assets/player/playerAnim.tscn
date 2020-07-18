@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/player/playerAnim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/player/playerAnimJump.tres" type="SpriteFrames" id=1]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "run_R"
+animation = "jumpEnd_R"
+frame = 2
 playing = true

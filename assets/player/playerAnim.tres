@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=2]
+[gd_resource type="SpriteFrames" load_steps=16 format=2]
 
 [ext_resource path="res://assets/player/player_run00.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/player_idle01.png" type="Texture" id=2]
@@ -10,16 +10,36 @@
 [ext_resource path="res://assets/player/player_run03.png" type="Texture" id=8]
 [ext_resource path="res://assets/player/player_run07.png" type="Texture" id=9]
 [ext_resource path="res://assets/player/player_idle00.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/player_jump04.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/player_jump01.png" type="Texture" id=12]
+[ext_resource path="res://assets/player/player_jump02.png" type="Texture" id=13]
+[ext_resource path="res://assets/player/player_jump03.png" type="Texture" id=14]
+[ext_resource path="res://assets/player/player_jump00.png" type="Texture" id=15]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "run_R",
-"speed": 12.0
+"name": "jumpStart_R",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "idle_R",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "jumpMid_R",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "jumpEnd_R",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "run_R",
+"speed": 12.0
 } ]
