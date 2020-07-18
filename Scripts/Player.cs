@@ -133,6 +133,15 @@ public class Player : KinematicBody2D
 		_Velocity.x -= _Velocity.x * friction * delta;
 		_Velocity = MoveAndSlide(_Velocity, new Vector2(0, -1));
 
+        if (IsOnWall())
+        {
+			if (Input.IsActionJustPressed("jump"))
+			{
+				_Velocity.y = -_JumpVelocity;
+				ChangeAnimationState("JumpStart");
+			}
+        }
+
 		_WasOnGround = IsOnFloor();
 	}
 
