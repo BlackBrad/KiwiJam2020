@@ -6,6 +6,5 @@
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "jumpEnd_R"
-frame = 2
+animation = "cling_R"
 playing = true
