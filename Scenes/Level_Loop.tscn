@@ -19,6 +19,7 @@ position = Vector2( -243.245, -251.73 )
 
 [node name="SafeZone" parent="." instance=ExtResource( 3 )]
 position = Vector2( 256.131, -1171.84 )
+_NextLevel = "Level_Loop"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
