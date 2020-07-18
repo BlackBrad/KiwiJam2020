@@ -48,14 +48,20 @@ public class Player : KinematicBody2D
 
 	public void ChangeAnimationState(string stateName)
 	{
-		GD.Print(stateName);
-		_AnimStateMachine.Travel(stateName);
-		var path = _AnimStateMachine.GetTravelPath();
-		foreach (var segment in path)
-		{
-			GD.Print("-> ", segment);
-		}
-	}
+        if (_AnimStateMachine.GetCurrentNode() != stateName)
+        {
+            //GD.Print("ChangeAnimationState from: ",
+                    //_AnimStateMachine.GetCurrentNode(),
+                    //" to: ", stateName);
+
+            _AnimStateMachine.Travel(stateName);
+            //var path = _AnimStateMachine.GetTravelPath();
+            //foreach (var segment in path)
+            //{
+                //GD.Print("-> ", segment);
+            //}
+        }
+    }
 
 	public void YeetCat()
 	{
@@ -102,6 +108,10 @@ public class Player : KinematicBody2D
 				ChangeAnimationState("JumpStart");
 			}
 		}
+        else
+        {
+			ChangeAnimationState("Falling");
+        }
 
 		if (Input.IsActionJustPressed("yeet"))
 		{
@@ -122,17 +132,6 @@ public class Player : KinematicBody2D
 		_Velocity += new Vector2(direction, gravity * delta);
 		_Velocity.x -= _Velocity.x * friction * delta;
 		_Velocity = MoveAndSlide(_Velocity, new Vector2(0, -1));
-
-		if (IsOnFloor() && !_WasOnGround)
-		{
-			// Player impact animation
-			ChangeAnimationState("Landing");
-		}
-
-		if (_WasOnGround && !IsOnFloor())
-		{
-			ChangeAnimationState("Falling");
-		}
 
 		_WasOnGround = IsOnFloor();
 	}

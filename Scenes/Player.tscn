@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/player/Animations/JumpStart.tres" type="Animation" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/player/Animations/Idle.tres" type="Animation" id=4]
-[ext_resource path="res://assets/player/player_idle01.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/player_jump04.png" type="Texture" id=5]
 [ext_resource path="res://assets/player/Animations/Run.tres" type="Animation" id=6]
 [ext_resource path="res://assets/player/player_yeet08.png" type="Texture" id=7]
 [ext_resource path="res://assets/player/Animations/Landing.tres" type="Animation" id=8]
@@ -116,7 +116,7 @@ states/Run/node = SubResource( 10 )
 states/Run/position = Vector2( 55, 96 )
 transitions = [ "Idle", "Run", SubResource( 11 ), "Run", "Idle", SubResource( 12 ), "Idle", "JumpStart", SubResource( 13 ), "JumpStart", "Falling", SubResource( 14 ), "Falling", "Landing", SubResource( 15 ), "Landing", "Idle", SubResource( 16 ), "Falling", "AerialYeet", SubResource( 17 ), "AerialYeet", "Falling", SubResource( 18 ), "Idle", "GroundYeet", SubResource( 19 ), "GroundYeet", "Idle", SubResource( 20 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -597, 36.98 )
+graph_offset = Vector2( -628, 27.98 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
