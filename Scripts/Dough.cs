@@ -3,8 +3,8 @@ using System;
 
 public class Dough : Area2D
 {
-    [Export]
-    public float _Speed = 4.0f;
+	[Export]
+	public float _Speed = 4.0f;
 
 	public override void _PhysicsProcess(float delta)
 	{
