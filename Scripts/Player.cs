@@ -25,16 +25,34 @@ public class Player : KinematicBody2D
 	[Export]
 	private float _JumpVelocity = 380.0f;
 
+	private AnimatedSprite _AnimatedSprite;
+
+	public override void _Ready()
+	{
+		_AnimatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+	}
+
 	public override void _PhysicsProcess(float delta)
 	{
 		float direction = 0.0f;
 		if (Input.IsActionPressed("walk_left"))
 		{
 			direction = -1.0f;
+			_AnimatedSprite.FlipH = true;
 		}
 		if (Input.IsActionPressed("walk_right"))
 		{
 			direction = 1.0f;
+			_AnimatedSprite.FlipH = false;
+		}
+
+		if (Mathf.Abs(direction) > 0.0f)
+		{
+			_AnimatedSprite.Animation = "run_R";
+		}
+		else
+		{
+			_AnimatedSprite.Animation = "idle_R";
 		}
 
 		float walkSpeed = _GroundWalkSpeed;
