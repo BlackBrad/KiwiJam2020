@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="KiwiJam2020"
-run/main_scene="res://Scenes/Level1.tscn"
+run/main_scene="res://Scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -45,4 +45,5 @@ jump={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
 environment/default_environment="res://default_env.tres"
