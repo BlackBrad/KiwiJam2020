@@ -31,6 +31,8 @@ public class Player : KinematicBody2D
     [Export]
     private float _WallJumpHorizontalVelocity = 400.0f;
 
+    private float _CatCount = 0;
+
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
 	private AnimationTree _AnimationTree;
@@ -101,6 +103,11 @@ public class Player : KinematicBody2D
 		}
 	}
 
+    public void OnCatPickup()
+    {
+        _CatCount++;
+    }
+
 	public override void _PhysicsProcess(float delta)
 	{
 		float direction = 0.0f;
@@ -140,7 +147,11 @@ public class Player : KinematicBody2D
 
 		if (Input.IsActionJustPressed("yeet"))
 		{
-			YeetCat();
+            if (_CatCount > 0)
+            {
+			    YeetCat();
+                _CatCount--;
+            }
 		}
 
 		float walkSpeed = _GroundWalkSpeed;
