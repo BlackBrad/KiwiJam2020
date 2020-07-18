@@ -139,7 +139,7 @@ public class Player : KinematicBody2D
 
     public void _OnYeetedCatDelayTimerTimeout()
     {
-        _Velocity.y += -_JumpVelocity;
+        _Velocity.y = -_JumpVelocity;
 
         var yeetedCat = (YeetedCat)_YeetedCatPrefab.Instance();
         GetNode("../").AddChild(yeetedCat);

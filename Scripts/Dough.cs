@@ -3,11 +3,13 @@ using System;
 
 public class Dough : Area2D
 {
+    [Export]
+    public float _Speed = 4.0f;
+
 	public override void _PhysicsProcess(float delta)
 	{
-		float riseRate = 4.0f;
 		var p = GlobalPosition;
-		p.y -= riseRate * delta;
+		p.y -= _Speed * delta;
 		GlobalPosition = p;
 	}
 

@@ -8,17 +8,18 @@
 [ext_resource path="res://assets/level/exitSprite.png" type="Texture" id=6]
 [ext_resource path="res://assets/level/levelBG.png" type="Texture" id=7]
 
-[node name="Level1" type="Node2D"]
+[node name="Level_pat" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200.5, 411.905 )
 
 [node name="Dough" parent="." instance=ExtResource( 2 )]
 position = Vector2( 553.076, 1569.06 )
+_Speed = 50.0
 
 [node name="SafeZone" parent="." instance=ExtResource( 5 )]
 position = Vector2( 250.026, -892.515 )
-_NextLevel = "Level1"
+_NextLevel = "Level_pat"
 
 [node name="CatPickup" parent="." instance=ExtResource( 3 )]
 position = Vector2( 831.394, 193.488 )
