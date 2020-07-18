@@ -67,6 +67,7 @@
     <Compile Include="Scripts\SafeZone.cs" />
     <Compile Include="Scripts\SceneManager.cs" />
     <Compile Include="Scripts\TitleScreen.cs" />
+    <Compile Include="Scripts\YeetedCat.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

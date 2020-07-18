@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/thud_3.wav-c7af8badf5a4f6d5feed8fc14cd9e1c4.sample"
+
+[deps]
+
+source_file="res://audio/stripped/effects/thud_3.wav"
+dest_files=[ "res://.import/thud_3.wav-c7af8badf5a4f6d5feed8fc14cd9e1c4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

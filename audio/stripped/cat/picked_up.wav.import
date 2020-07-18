@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/picked_up.wav-7bc7ada1325acd322f7c77d3b6b7865d.sample"
+
+[deps]
+
+source_file="res://audio/stripped/cat/picked_up.wav"
+dest_files=[ "res://.import/picked_up.wav-7bc7ada1325acd322f7c77d3b6b7865d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

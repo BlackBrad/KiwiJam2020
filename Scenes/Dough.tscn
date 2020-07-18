@@ -1,13 +1,50 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Dough.cs" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 649.212, 1000 )
 
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 650, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -30, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 58.59
+scale_random = 0.6
+scale_curve = SubResource( 5 )
+color = Color( 0.843137, 0.776471, 0.588235, 1 )
+hue_variation = 0.04
+hue_variation_random = 0.41
+
 [node name="Dough" type="Area2D"]
+position = Vector2( 0, 1000 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -650.0
+margin_top = -1000.0
+margin_right = 650.0
+margin_bottom = 1000.0
+color = Color( 0.815686, 0.721569, 0.431373, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -980 )
+amount = 128
+lifetime = 1.5
+process_material = SubResource( 6 )
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
