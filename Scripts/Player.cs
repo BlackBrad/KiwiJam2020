@@ -134,7 +134,7 @@ public class Player : KinematicBody2D
 
     public void PlayJumpSound()
     {
-        int index = (int)GD.RandRange(0, _JumpSounds.Length);
+        int index = (int)GD.RandRange(0, _JumpSounds.Length - 1);
 		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
 		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
         _AudioStreamPlayer.Stream = _JumpSounds[index];
@@ -143,7 +143,7 @@ public class Player : KinematicBody2D
 
     public void PlayImpactSound()
     {
-        int index = (int)GD.RandRange(0, _ImpactSounds.Length);
+        int index = (int)GD.RandRange(0, _ImpactSounds.Length - 1);
 		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
 		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
         _AudioStreamPlayer.Stream = _ImpactSounds[index];
@@ -152,7 +152,7 @@ public class Player : KinematicBody2D
 
     public void PlayCatPickupSound()
     {
-        int index = (int)GD.RandRange(0, _CatPickupSounds.Length);
+        int index = (int)GD.RandRange(0, _CatPickupSounds.Length - 1);
 		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
 		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
         _AudioStreamPlayer.Stream = _CatPickupSounds[index];

@@ -12,7 +12,7 @@ public class SafeZone : Area2D
 		{
 			GD.Print("Player entered safe zone");
 			var sceneManager = (SceneManager)GetNode("/root/SceneManager");
-			sceneManager.GotoScene(_NextLevel);
+			sceneManager.GotoScene("LevelSelect");
 		}
 	}
 }
