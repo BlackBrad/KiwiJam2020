@@ -1,10 +1,10 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/player/Animations/JumpStart.tres" type="Animation" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/player/Animations/Idle.tres" type="Animation" id=4]
-[ext_resource path="res://assets/player/player_idle00.png" type="Texture" id=5]
+[ext_resource path="res://audio/stripped/effects/thud_1.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/player/Animations/Run.tres" type="Animation" id=6]
 [ext_resource path="res://assets/player/player_yeet08.png" type="Texture" id=7]
 [ext_resource path="res://assets/player/Animations/Landing.tres" type="Animation" id=8]
@@ -20,6 +20,14 @@
 [ext_resource path="res://assets/player/Animations/Falling.tres" type="Animation" id=18]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/player/Animations/Cling.tres" type="Animation" id=20]
+[ext_resource path="res://audio/stripped/man/jump.wav" type="AudioStream" id=21]
+[ext_resource path="res://audio/stripped/man/oof.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/player/player_idle01.png" type="Texture" id=23]
+[ext_resource path="res://audio/stripped/effects/thud_2.wav" type="AudioStream" id=24]
+[ext_resource path="res://audio/stripped/effects/thud_3.wav" type="AudioStream" id=25]
+[ext_resource path="res://audio/stripped/cat/cat_screech.wav" type="AudioStream" id=26]
+[ext_resource path="res://audio/stripped/cat/meow_1.wav" type="AudioStream" id=27]
+[ext_resource path="res://audio/stripped/cat/picked_up.wav" type="AudioStream" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.1822, 30.1858 )
@@ -136,6 +144,9 @@ graph_offset = Vector2( -628, 27.98 )
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
+_JumpSounds = [ ExtResource( 21 ), ExtResource( 22 ) ]
+_ImpactSounds = [ ExtResource( 5 ), ExtResource( 24 ), ExtResource( 25 ) ]
+_CatPickupSounds = [ ExtResource( 28 ), ExtResource( 26 ), ExtResource( 27 ) ]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -162,7 +173,7 @@ anims/Yeet = SubResource( 3 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8.132 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 5 )
+texture = ExtResource( 23 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 25 )
@@ -199,4 +210,6 @@ enabled = true
 cast_to = Vector2( -30, 0 )
 
 [node name="HUD" parent="." instance=ExtResource( 19 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="timeout" from="YeetedCatDelayTimer" to="." method="_OnYeetedCatDelayTimerTimeout"]
