@@ -31,6 +31,12 @@ public class Player : KinematicBody2D
     [Export]
     private float _WallJumpHorizontalVelocity = 400.0f;
 
+    private int _CatCount = 0;
+    private double _TimeTaken = 0.0f;
+
+    [Export]
+    private string _HudScenePath = "res://Scenes/HUD.tscn";
+
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
 	private AnimationTree _AnimationTree;
@@ -40,6 +46,8 @@ public class Player : KinematicBody2D
 
     private Node2D _RightWallRaycasts;
     private Node2D _LeftWallRaycasts;
+
+    private HUD _Hud;
 
 	public override void _Ready()
 	{
@@ -55,22 +63,24 @@ public class Player : KinematicBody2D
         _LeftWallRaycasts = GetNode<Node2D>("LeftWallRaycasts");
 
         _YeetedCatPrefab = (PackedScene)GD.Load("res://Scenes/YeetedCat.tscn");
+
+        _Hud = GetNode<HUD>("HUD");
 	}
 
 	public void ChangeAnimationState(string stateName)
 	{
         if (_AnimStateMachine.GetCurrentNode() != stateName)
         {
-            //GD.Print("ChangeAnimationState from: ",
-                    //_AnimStateMachine.GetCurrentNode(),
-                    //" to: ", stateName);
+            GD.Print("ChangeAnimationState from: ",
+                    _AnimStateMachine.GetCurrentNode(),
+                    " to: ", stateName);
 
             _AnimStateMachine.Travel(stateName);
-            //var path = _AnimStateMachine.GetTravelPath();
-            //foreach (var segment in path)
-            //{
-                //GD.Print("-> ", segment);
-            //}
+            var path = _AnimStateMachine.GetTravelPath();
+            foreach (var segment in path)
+            {
+                GD.Print("-> ", segment);
+            }
         }
     }
 
@@ -79,13 +89,13 @@ public class Player : KinematicBody2D
         foreach (var child in parent.GetChildren())
         {
             var raycast = (RayCast2D)child;
-            if (raycast.IsColliding())
+            if (!raycast.IsColliding())
             {
-                return true;
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
 	public void YeetCat()
@@ -97,12 +107,23 @@ public class Player : KinematicBody2D
             {
                 ChangeAnimationState("AerialYeet");
                 _YeetedCatDelayTimer.Start();
+                _CatCount--;
+                _Hud.UpdateCatCount(_CatCount);
             }
 		}
 	}
 
+    public void OnCatPickup()
+    {
+        _CatCount++;
+        _Hud.UpdateCatCount(_CatCount);
+    }
+
 	public override void _PhysicsProcess(float delta)
 	{
+        _TimeTaken += (double)delta;
+        _Hud.UpdateTimeTaken(_TimeTaken);
+
 		float direction = 0.0f;
 		if (Input.IsActionPressed("walk_left"))
 		{
@@ -114,6 +135,10 @@ public class Player : KinematicBody2D
 			direction = 1.0f;
 			_Sprite.FlipH = false;
 		}
+
+		float walkSpeed = _GroundWalkSpeed;
+		float gravity = _Gravity;
+		float friction = _GroundFriction;
 
 		if (_WasOnGround)
 		{
@@ -135,42 +160,32 @@ public class Player : KinematicBody2D
 		}
         else
         {
-			ChangeAnimationState("Falling");
-        }
-
-		if (Input.IsActionJustPressed("yeet"))
-		{
-			YeetCat();
-		}
-
-		float walkSpeed = _GroundWalkSpeed;
-		float gravity = _Gravity;
-		float friction = _GroundFriction;
-
-		if (!_WasOnGround)
-        {
             friction = _AirFriction;
             walkSpeed = _AirWalkSpeed;
 
             if (WallRaycast(_RightWallRaycasts))
             {
+                ChangeAnimationState("Cling");
+                _Sprite.FlipH = false;
                 if (Input.IsActionJustPressed("jump"))
                 {
                     _Velocity.y = -_WallJumpVerticalVelocity;
                     _Velocity.x = -_WallJumpHorizontalVelocity;
-                    _Sprite.FlipH = true;
-                    ChangeAnimationState("JumpStart");
                 }
             }
             else if (WallRaycast(_LeftWallRaycasts))
             {
+                ChangeAnimationState("Cling");
+                _Sprite.FlipH = true;
                 if (Input.IsActionJustPressed("jump"))
                 {
                     _Velocity.y = -_WallJumpVerticalVelocity;
                     _Velocity.x = _WallJumpHorizontalVelocity;
-                    _Sprite.FlipH = false;
-                    ChangeAnimationState("JumpStart");
                 }
+            }
+            else
+            {
+			    ChangeAnimationState("Falling");
             }
 
             // Jump height control
@@ -179,6 +194,14 @@ public class Player : KinematicBody2D
                 _Velocity.y = 0.0f;
             }
         }
+
+		if (Input.IsActionJustPressed("yeet"))
+		{
+            if (_CatCount > 0)
+            {
+			    YeetCat();
+            }
+		}
 
 		direction *= walkSpeed;
 
