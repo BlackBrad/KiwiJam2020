@@ -5,4 +5,4 @@
 [node name="Level1Select" instance=ExtResource( 1 )]
 
 [node name="Label" parent="." index="0"]
-text = "Level1"
+text = "Level 1"

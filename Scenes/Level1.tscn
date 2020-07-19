@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TileSets/gray.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Dough.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/CatPickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/SafeZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/level/levelBG.png" type="Texture" id=6]
+[ext_resource path="res://assets/level/gradientBG.png" type="Texture" id=7]
+[ext_resource path="res://assets/level/curtains_sprite.png" type="Texture" id=8]
+[ext_resource path="res://assets/level/window_sprite.png" type="Texture" id=9]
+[ext_resource path="res://assets/level/light_sprite.png" type="Texture" id=10]
 
 [node name="Level1" type="Node2D"]
 
@@ -13,16 +18,67 @@ position = Vector2( 200.5, 411.905 )
 
 [node name="Dough" parent="." instance=ExtResource( 2 )]
 position = Vector2( 553.076, 1569.06 )
+_Speed = 10.0
 
 [node name="SafeZone" parent="." instance=ExtResource( 5 )]
 position = Vector2( 244.425, 17.6389 )
 _NextLevel = "Level1"
 
 [node name="CatPickup" parent="." instance=ExtResource( 3 )]
-position = Vector2( 514.048, 158.75 )
+position = Vector2( 514.048, 168 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 4, 0, 0, 27, 0, 0, 65540, 0, 0, 65563, 0, 0, 131076, 0, 0, 131099, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196635, 0, 0, 262148, 0, 0, 262171, 0, 0, 327684, 0, 0, 327707, 0, 0, 393220, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393243, 0, 0, 458756, 0, 0, 458779, 0, 0, 524292, 0, 0, 524315, 0, 0, 589828, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 655364, 0, 0, 655387, 0, 0, 720900, 0, 0, 720923, 0, 0, 786436, 0, 0, 786459, 0, 0, 851972, 0, 0, 851995, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 983044, 0, 0, 983067, 0, 0, 1048580, 0, 0, 1048603, 0, 0, 1114116, 0, 0, 1114139, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0 )
+tile_data = PoolIntArray( -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -196590, 0, 0, -196589, 0, 0, -196588, 0, 0, -196587, 0, 0, -196586, 0, 0, -196585, 0, 0, -196584, 0, 0, -196583, 0, 0, -196582, 0, 0, -196581, 0, 0, -131068, 0, 0, -131045, 0, 0, -65532, 0, 0, -65509, 0, 0, 4, 0, 0, 27, 0, 0, 65540, 0, 0, 65563, 0, 0, 131076, 0, 0, 131099, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196635, 0, 0, 262148, 0, 0, 262171, 0, 0, 327684, 0, 0, 327707, 0, 0, 393220, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393243, 0, 0, 458756, 0, 0, 458779, 0, 0, 524292, 0, 0, 524315, 0, 0, 589828, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 655364, 0, 0, 655387, 0, 0, 720900, 0, 0, 720923, 0, 0, 786436, 0, 0, 786459, 0, 0, 851972, 0, 0, 851995, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983058, 0, 0, 983059, 0, 0, 983060, 0, 0, 983061, 0, 0, 983062, 0, 0, 983063, 0, 0, 983064, 0, 0, 983065, 0, 0, 983066, 0, 0, 983067, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048586, 0, 0, 1048587, 0, 0, 1048594, 0, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 0, 1048599, 0, 0, 1048600, 0, 0, 1048601, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0 )
+
+[node name="BG_GRP" type="Node2D" parent="."]
+z_index = -1000
+
+[node name="Sprite" type="Sprite" parent="BG_GRP"]
+position = Vector2( 512, 288 )
+scale = Vector2( 0.375, 0.375 )
+texture = ExtResource( 6 )
+
+[node name="gradient_GRP" type="Node2D" parent="."]
+z_index = 1000
+z_as_relative = false
+
+[node name="Sprite" type="Sprite" parent="gradient_GRP"]
+position = Vector2( -176, 207.333 )
+scale = Vector2( 12.6667, 2.9349 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="gradient_GRP"]
+position = Vector2( 1201, 207.333 )
+scale = Vector2( 12.7083, 2.9349 )
+texture = ExtResource( 7 )
+
+[node name="dressing_GRP" type="Node2D" parent="."]
+z_index = -30
+
+[node name="window" type="Sprite" parent="dressing_GRP"]
+position = Vector2( 264, 312 )
+scale = Vector2( 0.53125, 0.53125 )
+texture = ExtResource( 9 )
+
+[node name="window3" type="Sprite" parent="dressing_GRP"]
+position = Vector2( 664, 48 )
+scale = Vector2( 0.53125, 0.53125 )
+texture = ExtResource( 9 )
+
+[node name="window2" type="Sprite" parent="dressing_GRP"]
+position = Vector2( 672, 312 )
+scale = Vector2( -0.531, 0.531 )
+texture = ExtResource( 9 )
+
+[node name="curtain" type="Sprite" parent="dressing_GRP"]
+position = Vector2( 269, 311 )
+scale = Vector2( 0.53125, 0.53125 )
+texture = ExtResource( 8 )
+
+[node name="light" type="Sprite" parent="dressing_GRP"]
+position = Vector2( 512, -16 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 10 )

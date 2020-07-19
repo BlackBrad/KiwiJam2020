@@ -83,16 +83,7 @@ public class Player : KinematicBody2D
 	{
         if (_AnimStateMachine.GetCurrentNode() != stateName)
         {
-            GD.Print("ChangeAnimationState from: ",
-                    _AnimStateMachine.GetCurrentNode(),
-                    " to: ", stateName);
-
             _AnimStateMachine.Travel(stateName);
-            var path = _AnimStateMachine.GetTravelPath();
-            foreach (var segment in path)
-            {
-                GD.Print("-> ", segment);
-            }
         }
     }
 
@@ -134,29 +125,38 @@ public class Player : KinematicBody2D
 
     public void PlayJumpSound()
     {
-        int index = (int)GD.RandRange(0, _JumpSounds.Length - 1);
-		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
-		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
-        _AudioStreamPlayer.Stream = _JumpSounds[index];
-        _AudioStreamPlayer.Play();
+        if (_JumpSounds.Length > 0)
+        {
+            int index = (int)GD.RandRange(0, _JumpSounds.Length - 1);
+            _AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+            _AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+            _AudioStreamPlayer.Stream = _JumpSounds[index];
+            _AudioStreamPlayer.Play();
+        }
     }
 
     public void PlayImpactSound()
     {
-        int index = (int)GD.RandRange(0, _ImpactSounds.Length - 1);
-		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
-		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
-        _AudioStreamPlayer.Stream = _ImpactSounds[index];
-        _AudioStreamPlayer.Play();
+        if (_ImpactSounds.Length > 0)
+        {
+            int index = (int)GD.RandRange(0, _ImpactSounds.Length - 1);
+            _AudioStreamPlayer.Stream = _ImpactSounds[index];
+            _AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+            _AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+            _AudioStreamPlayer.Play();
+        }
     }
 
     public void PlayCatPickupSound()
     {
-        int index = (int)GD.RandRange(0, _CatPickupSounds.Length - 1);
-		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
-		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
-        _AudioStreamPlayer.Stream = _CatPickupSounds[index];
-        _AudioStreamPlayer.Play();
+        if (_CatPickupSounds.Length > 0)
+        {
+            int index = (int)GD.RandRange(0, _CatPickupSounds.Length - 1);
+            _AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+            _AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+            _AudioStreamPlayer.Stream = _CatPickupSounds[index];
+            _AudioStreamPlayer.Play();
+        }
     }
 
 	public override void _PhysicsProcess(float delta)
