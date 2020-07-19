@@ -15,9 +15,6 @@
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200.5, 411.905 )
-_JumpSounds = null
-_ImpactSounds = null
-_CatPickupSounds = null
 
 [node name="Dough" parent="." instance=ExtResource( 2 )]
 position = Vector2( 553.076, 1569.06 )
