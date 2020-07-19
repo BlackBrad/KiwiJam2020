@@ -9,7 +9,7 @@
 [node name="CustomMenuButton" type="Button"]
 margin_right = 784.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 360, 80 )
+rect_min_size = Vector2( 200, 80 )
 custom_styles/focus = SubResource( 1 )
 flat = true
 script = ExtResource( 3 )
@@ -33,3 +33,4 @@ __meta__ = {
 [connection signal="focus_entered" from="." to="Label" method="_on_CustomMenuButton_focus_entered"]
 [connection signal="focus_exited" from="." to="Label" method="_on_CustomMenuButton_focus_exited"]
 [connection signal="mouse_entered" from="." to="Label" method="_on_CustomMenuButton_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_CustomMenuButton_pressed"]

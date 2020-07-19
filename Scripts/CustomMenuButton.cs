@@ -24,10 +24,12 @@ public class CustomMenuButton : Button
 //  {
 //      
 //  }
-	private void _on_CustomMenuButton_pressed()
+	public void _on_CustomMenuButton_pressed()
 	{
 		EmitSignal(nameof(ButtonPressed), this._NextScene);
 		// Replace with function body.
-		
 	}
 }
+
+
+

@@ -17,10 +17,18 @@ public class NewGameButton : CustomMenuButton
 //  {
 //      
 //  }
-	private void _on_NewGameButton_pressed()
+	
+	
+	private void _on_NewGameButton_focus_entered()
 	{
-		EmitSignal(nameof(ButtonPressed), this._NextScene);
-		// Replace with function body.
+		GetNode<KinematicBody2D>("YeetedCat").Show();
 	}
-
+	
+	private void _on_NewGameButton_focus_exited()
+	{
+		// Replace with function body.
+		GetNode<KinematicBody2D>("YeetedCat").Hide();
+	}
 }
+
+
