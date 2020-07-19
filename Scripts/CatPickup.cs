@@ -18,8 +18,8 @@ public class CatPickup : Area2D
 		if (body is Player)
 		{
 			GD.Print("Player picked up cat");
-            var player = (Player)body;
-            player.OnCatPickup();
+			var player = (Player)body;
+			player.OnCatPickup();
 			QueueFree();
 		}
 	}
