@@ -83,16 +83,7 @@ public class Player : KinematicBody2D
 	{
         if (_AnimStateMachine.GetCurrentNode() != stateName)
         {
-            GD.Print("ChangeAnimationState from: ",
-                    _AnimStateMachine.GetCurrentNode(),
-                    " to: ", stateName);
-
             _AnimStateMachine.Travel(stateName);
-            var path = _AnimStateMachine.GetTravelPath();
-            foreach (var segment in path)
-            {
-                GD.Print("-> ", segment);
-            }
         }
     }
 
