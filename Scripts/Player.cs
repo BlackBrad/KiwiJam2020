@@ -71,16 +71,16 @@ public class Player : KinematicBody2D
 	{
         if (_AnimStateMachine.GetCurrentNode() != stateName)
         {
-            //GD.Print("ChangeAnimationState from: ",
-                    //_AnimStateMachine.GetCurrentNode(),
-                    //" to: ", stateName);
+            GD.Print("ChangeAnimationState from: ",
+                    _AnimStateMachine.GetCurrentNode(),
+                    " to: ", stateName);
 
             _AnimStateMachine.Travel(stateName);
-            //var path = _AnimStateMachine.GetTravelPath();
-            //foreach (var segment in path)
-            //{
-                //GD.Print("-> ", segment);
-            //}
+            var path = _AnimStateMachine.GetTravelPath();
+            foreach (var segment in path)
+            {
+                GD.Print("-> ", segment);
+            }
         }
     }
 
@@ -89,13 +89,13 @@ public class Player : KinematicBody2D
         foreach (var child in parent.GetChildren())
         {
             var raycast = (RayCast2D)child;
-            if (raycast.IsColliding())
+            if (!raycast.IsColliding())
             {
-                return true;
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
 	public void YeetCat()
@@ -136,6 +136,10 @@ public class Player : KinematicBody2D
 			_Sprite.FlipH = false;
 		}
 
+		float walkSpeed = _GroundWalkSpeed;
+		float gravity = _Gravity;
+		float friction = _GroundFriction;
+
 		if (_WasOnGround)
 		{
 			if (Mathf.Abs(direction) > 0.0f)
@@ -156,7 +160,39 @@ public class Player : KinematicBody2D
 		}
         else
         {
-			ChangeAnimationState("Falling");
+            friction = _AirFriction;
+            walkSpeed = _AirWalkSpeed;
+
+            if (WallRaycast(_RightWallRaycasts))
+            {
+                ChangeAnimationState("Cling");
+                _Sprite.FlipH = false;
+                if (Input.IsActionJustPressed("jump"))
+                {
+                    _Velocity.y = -_WallJumpVerticalVelocity;
+                    _Velocity.x = -_WallJumpHorizontalVelocity;
+                }
+            }
+            else if (WallRaycast(_LeftWallRaycasts))
+            {
+                ChangeAnimationState("Cling");
+                _Sprite.FlipH = true;
+                if (Input.IsActionJustPressed("jump"))
+                {
+                    _Velocity.y = -_WallJumpVerticalVelocity;
+                    _Velocity.x = _WallJumpHorizontalVelocity;
+                }
+            }
+            else
+            {
+			    ChangeAnimationState("Falling");
+            }
+
+            // Jump height control
+            if (Input.IsActionJustReleased("jump") && _Velocity.y < 0.0f)
+            {
+                _Velocity.y = 0.0f;
+            }
         }
 
 		if (Input.IsActionJustPressed("yeet"))
@@ -166,43 +202,6 @@ public class Player : KinematicBody2D
 			    YeetCat();
             }
 		}
-
-		float walkSpeed = _GroundWalkSpeed;
-		float gravity = _Gravity;
-		float friction = _GroundFriction;
-
-		if (!_WasOnGround)
-        {
-            friction = _AirFriction;
-            walkSpeed = _AirWalkSpeed;
-
-            if (WallRaycast(_RightWallRaycasts))
-            {
-                if (Input.IsActionJustPressed("jump"))
-                {
-                    _Velocity.y = -_WallJumpVerticalVelocity;
-                    _Velocity.x = -_WallJumpHorizontalVelocity;
-                    _Sprite.FlipH = true;
-                    ChangeAnimationState("JumpStart");
-                }
-            }
-            else if (WallRaycast(_LeftWallRaycasts))
-            {
-                if (Input.IsActionJustPressed("jump"))
-                {
-                    _Velocity.y = -_WallJumpVerticalVelocity;
-                    _Velocity.x = _WallJumpHorizontalVelocity;
-                    _Sprite.FlipH = false;
-                    ChangeAnimationState("JumpStart");
-                }
-            }
-
-            // Jump height control
-            if (Input.IsActionJustReleased("jump") && _Velocity.y < 0.0f)
-            {
-                _Velocity.y = 0.0f;
-            }
-        }
 
 		direction *= walkSpeed;
 
