@@ -3,14 +3,14 @@ using System;
 
 public class HUD : CanvasLayer
 {
-    private Label _CatCountLabel;
-    private Label _TimeLabel;
+    private Godot.Label _CatCountLabel;
+    private Godot.Label _TimeLabel;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _CatCountLabel = GetNode<Label>("Control/CatCountLabel");
-        _TimeLabel = GetNode<Label>("Control/TimeLabel");
+        _CatCountLabel = GetNode<Godot.Label>("Control/CatCountLabel");
+        _TimeLabel = GetNode<Godot.Label>("Control/TimeLabel");
     }
 
     public void UpdateCatCount(int count)

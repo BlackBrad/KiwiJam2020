@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class QuitButton : CustomMenuButton
+public class LevelSelectButton : CustomMenuButton
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -19,22 +19,17 @@ public class QuitButton : CustomMenuButton
 //      
 //  }
 	
-	public void _on_CustomMenuButton_pressed()
-	{
-		GetTree().Quit();
-		// Replace with function body.
-	}
-	
-	private void _on_QuitButton_focus_entered()
+	private void _on_LevelSelectButton_focus_entered()
 	{
 		GetNode<KinematicBody2D>("YeetedCat").Show();
 	}
 	
 	
-	private void _on_QuitButton_focus_exited()
+	private void _on_LevelSelectButton_focus_exited()
 	{
 		GetNode<KinematicBody2D>("YeetedCat").Hide();
 	}
 }
+
 
 

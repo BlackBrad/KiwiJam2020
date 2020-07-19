@@ -58,11 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scripts\CatPickup.cs" />
+    <Compile Include="Scripts\CustomMenuButton.cs" />
     <Compile Include="Scripts\Dough.cs" />
     <Compile Include="Scripts/Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\FadeIn.cs" />
     <Compile Include="Scripts\HUD.cs" />
+    <Compile Include="Scripts\Label.cs" />
+    <Compile Include="Scripts\Level1Select.cs" />
+    <Compile Include="Scripts\LevelSelect.cs" />
+    <Compile Include="Scripts\LevelSelectButton.cs" />
     <Compile Include="Scripts\NewGameButton.cs" />
     <Compile Include="Scripts\QuitButton.cs" />
     <Compile Include="Scripts\SafeZone.cs" />

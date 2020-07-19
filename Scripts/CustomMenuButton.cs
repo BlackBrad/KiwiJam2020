@@ -1,13 +1,19 @@
 using Godot;
 using System;
 
-public class QuitButton : CustomMenuButton
+public class CustomMenuButton : Button
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
 
 	// Called when the node enters the scene tree for the first time.
+	[Export]
+	public string _NextScene = "";
+	
+	[Signal]
+	public delegate void ButtonPressed(string nextLevel);
+	
 	public override void _Ready()
 	{
 		
@@ -18,23 +24,12 @@ public class QuitButton : CustomMenuButton
 //  {
 //      
 //  }
-	
 	public void _on_CustomMenuButton_pressed()
 	{
-		GetTree().Quit();
+		EmitSignal(nameof(ButtonPressed), this._NextScene);
 		// Replace with function body.
 	}
-	
-	private void _on_QuitButton_focus_entered()
-	{
-		GetNode<KinematicBody2D>("YeetedCat").Show();
-	}
-	
-	
-	private void _on_QuitButton_focus_exited()
-	{
-		GetNode<KinematicBody2D>("YeetedCat").Hide();
-	}
 }
+
 
 
