@@ -12,6 +12,7 @@
 position = Vector2( -265.872, -760.847 )
 
 [node name="Dough" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 1000 )
 _Speed = 32.0
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
