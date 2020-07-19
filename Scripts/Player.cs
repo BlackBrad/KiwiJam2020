@@ -32,6 +32,7 @@ public class Player : KinematicBody2D
     private float _WallJumpHorizontalVelocity = 400.0f;
 
     private int _CatCount = 0;
+    private double _TimeTaken = 0.0f;
 
     [Export]
     private string _HudScenePath = "res://Scenes/HUD.tscn";
@@ -107,7 +108,7 @@ public class Player : KinematicBody2D
                 ChangeAnimationState("AerialYeet");
                 _YeetedCatDelayTimer.Start();
                 _CatCount--;
-                _Hud.SetCatCount(_CatCount);
+                _Hud.UpdateCatCount(_CatCount);
             }
 		}
 	}
@@ -115,11 +116,14 @@ public class Player : KinematicBody2D
     public void OnCatPickup()
     {
         _CatCount++;
-        _Hud.SetCatCount(_CatCount);
+        _Hud.UpdateCatCount(_CatCount);
     }
 
 	public override void _PhysicsProcess(float delta)
 	{
+        _TimeTaken += (double)delta;
+        _Hud.UpdateTimeTaken(_TimeTaken);
+
 		float direction = 0.0f;
 		if (Input.IsActionPressed("walk_left"))
 		{

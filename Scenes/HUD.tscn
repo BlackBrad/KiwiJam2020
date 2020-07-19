@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Fonts/DynamicFonts/ConcertOne-Regular_68.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/DynamicFonts/HudFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/HUD.cs" type="Script" id=2]
 
 [node name="HUD" type="CanvasLayer"]
@@ -22,3 +22,18 @@ grow_horizontal = 0
 custom_fonts/font = ExtResource( 1 )
 text = "Cat Count: 0"
 align = 2
+
+[node name="TimeLabel" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -300.0
+margin_top = 73.0754
+margin_right = -2.5199
+margin_bottom = 184.075
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Level Time : 00:00:000
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
