@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSets/gray.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/CatPickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Dough.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/SafeZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/level/curtains_sprite.png" type="Texture" id=6]
+[ext_resource path="res://assets/level/window_sprite.png" type="Texture" id=7]
+[ext_resource path="res://assets/level/light_sprite.png" type="Texture" id=8]
+[ext_resource path="res://assets/level/levelBG.png" type="Texture" id=9]
 
 [node name="BradsLevel" type="Node2D"]
 
@@ -38,3 +42,363 @@ _Speed = 30.0
 
 [node name="SafeZone" parent="." instance=ExtResource( 5 )]
 position = Vector2( 626.57, -4590.41 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( 387.362, -376 )
+scale = Vector2( 0.357178, 0.357178 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="Node2D"]
+position = Vector2( 390.941, -1101.66 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 390.193, -1820.98 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite23" type="Sprite" parent="Node2D"]
+position = Vector2( 389.038, -2539.25 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite24" type="Sprite" parent="Node2D"]
+position = Vector2( 388.529, -3258.6 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite25" type="Sprite" parent="Node2D"]
+position = Vector2( 388.514, -3978.88 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite26" type="Sprite" parent="Node2D"]
+position = Vector2( 388.333, -4698.23 )
+scale = Vector2( 0.351589, 0.351589 )
+z_index = -5
+texture = ExtResource( 9 )
+
+[node name="Sprite4" type="Sprite" parent="Node2D"]
+position = Vector2( 129.293, -1370.5 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="Node2D"]
+position = Vector2( 684.243, -335.866 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite9" type="Sprite" parent="Node2D"]
+position = Vector2( 824.628, -494.887 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite10" type="Sprite" parent="Node2D"]
+position = Vector2( 1014.03, -848.095 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite11" type="Sprite" parent="Node2D"]
+position = Vector2( 1136.88, -1296 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite12" type="Sprite" parent="Node2D"]
+position = Vector2( 1200.87, -1677.37 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite13" type="Sprite" parent="Node2D"]
+position = Vector2( 635.226, -1743.91 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite14" type="Sprite" parent="Node2D"]
+position = Vector2( 824.628, -2097.12 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite15" type="Sprite" parent="Node2D"]
+position = Vector2( 1118.97, -2514.32 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite16" type="Sprite" parent="Node2D"]
+position = Vector2( 1113.85, -2765.15 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite17" type="Sprite" parent="Node2D"]
+position = Vector2( 768.319, -2928.95 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite18" type="Sprite" parent="Node2D"]
+position = Vector2( 1195.75, -3123.47 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite19" type="Sprite" parent="Node2D"]
+position = Vector2( 778.557, -3346.15 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite20" type="Sprite" parent="Node2D"]
+position = Vector2( 1172.72, -3960.43 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite22" type="Sprite" parent="Node2D"]
+position = Vector2( 709.451, -4367.38 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite21" type="Sprite" parent="Node2D"]
+position = Vector2( 967.959, -4175.42 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite6" type="Sprite" parent="Node2D"]
+position = Vector2( 687.116, -177.842 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite7" type="Sprite" parent="Node2D"]
+position = Vector2( 688.358, -17.5797 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Sprite8" type="Sprite" parent="Node2D"]
+position = Vector2( 683.389, 142.683 )
+scale = Vector2( 0.551068, 0.551068 )
+texture = ExtResource( 8 )
+offset = Vector2( -1007.05, -490.632 )
+
+[node name="Window1" type="Sprite" parent="Node2D"]
+position = Vector2( 669.289, -95.941 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window2" type="Sprite" parent="Node2D"]
+position = Vector2( 666.991, -415.362 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window5" type="Sprite" parent="Node2D"]
+position = Vector2( 218.883, -257.949 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window3" type="Sprite" parent="Node2D"]
+position = Vector2( 666.991, -753.166 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window4" type="Sprite" parent="Node2D"]
+position = Vector2( 681.928, -1132.33 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window6" type="Sprite" parent="Node2D"]
+position = Vector2( 282.078, -1313.88 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window7" type="Sprite" parent="Node2D"]
+position = Vector2( 334.932, -1869.99 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window8" type="Sprite" parent="Node2D"]
+position = Vector2( 77.5568, -1881.48 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window9" type="Sprite" parent="Node2D"]
+position = Vector2( 194.754, -1705.68 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window10" type="Sprite" parent="Node2D"]
+position = Vector2( 199.35, -1537.93 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window11" type="Sprite" parent="Node2D"]
+position = Vector2( 257.949, -2495.04 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window12" type="Sprite" parent="Node2D"]
+position = Vector2( 646.99, -2766.35 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window13" type="Sprite" parent="Node2D"]
+position = Vector2( 542.051, -3360.15 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window14" type="Sprite" parent="Node2D"]
+position = Vector2( 286.103, -2996.7 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window15" type="Sprite" parent="Node2D"]
+position = Vector2( 96.7015, -3585.38 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window16" type="Sprite" parent="Node2D"]
+position = Vector2( 81.3446, -3951.39 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window17" type="Sprite" parent="Node2D"]
+position = Vector2( 132.534, -4227.81 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window18" type="Sprite" parent="Node2D"]
+position = Vector2( 81.3446, -4524.71 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window19" type="Sprite" parent="Node2D"]
+position = Vector2( 314.257, -4396.74 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window20" type="Sprite" parent="Node2D"]
+position = Vector2( 544.611, -4163.82 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Window21" type="Sprite" parent="Node2D"]
+position = Vector2( 672.585, -3731.27 )
+scale = Vector2( 0.456921, 0.456921 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Curtan" type="Sprite" parent="Node2D"]
+position = Vector2( 670.438, -751.442 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan2" type="Sprite" parent="Node2D"]
+position = Vector2( 196.934, -1532.08 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan3" type="Sprite" parent="Node2D"]
+position = Vector2( 340.265, -1867.38 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan4" type="Sprite" parent="Node2D"]
+position = Vector2( 260.921, -2491.89 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan5" type="Sprite" parent="Node2D"]
+position = Vector2( 545.024, -3359.55 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan6" type="Sprite" parent="Node2D"]
+position = Vector2( 135.507, -4224.66 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
+
+[node name="Curtan7" type="Sprite" parent="Node2D"]
+position = Vector2( 89.436, -3948.24 )
+scale = Vector2( 0.367156, 0.40755 )
+texture = ExtResource( 6 )
