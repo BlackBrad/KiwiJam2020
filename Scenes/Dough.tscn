@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Dough.cs" type="Script" id=1]
 [ext_resource path="res://assets/dough/doughParticle.png" type="Texture" id=2]
+[ext_resource path="res://assets/dough/doughFace01.png" type="Texture" id=3]
+[ext_resource path="res://assets/dough/doughFace00.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 649.212, 1000 )
@@ -42,12 +44,48 @@ scale_random = 0.6
 scale_curve = SubResource( 3 )
 color = Color( 0.733333, 0.596078, 0.309804, 1 )
 
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="Animation" id=7]
+resource_name = "doughBob"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -14.0647, -965.95 ), Vector2( -14.0647, -935.644 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "doughBob"
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/doughBob/node = SubResource( 8 )
+states/doughBob/position = Vector2( 128, 60 )
+start_node = "doughBob"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
 [node name="Dough" type="Area2D"]
-position = Vector2( 0, 1000 )
+position = Vector2( -14.0647, -962.501 )
 z_index = 40
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -76,4 +114,21 @@ lifetime = 7.95
 preprocess = 10.0
 process_material = SubResource( 5 )
 texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -14.0647, -942.106 )
+scale = Vector2( 0.293691, 0.293691 )
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite")
+anims/doughBob = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 10 )
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
