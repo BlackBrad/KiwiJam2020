@@ -37,6 +37,15 @@ public class Player : KinematicBody2D
     [Export]
     private string _HudScenePath = "res://Scenes/HUD.tscn";
 
+    [Export]
+    private AudioStream[] _JumpSounds;
+
+    [Export]
+    private AudioStream[] _ImpactSounds;
+
+    [Export]
+    private AudioStream[] _CatPickupSounds;
+
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
 	private AnimationTree _AnimationTree;
@@ -48,6 +57,7 @@ public class Player : KinematicBody2D
     private Node2D _LeftWallRaycasts;
 
     private HUD _Hud;
+    private AudioStreamPlayer _AudioStreamPlayer;
 
 	public override void _Ready()
 	{
@@ -65,6 +75,8 @@ public class Player : KinematicBody2D
         _YeetedCatPrefab = (PackedScene)GD.Load("res://Scenes/YeetedCat.tscn");
 
         _Hud = GetNode<HUD>("HUD");
+
+        _AudioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
 	}
 
 	public void ChangeAnimationState(string stateName)
@@ -117,6 +129,34 @@ public class Player : KinematicBody2D
     {
         _CatCount++;
         _Hud.UpdateCatCount(_CatCount);
+        PlayCatPickupSound();
+    }
+
+    public void PlayJumpSound()
+    {
+        int index = (int)GD.RandRange(0, _JumpSounds.Length);
+		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+        _AudioStreamPlayer.Stream = _JumpSounds[index];
+        _AudioStreamPlayer.Play();
+    }
+
+    public void PlayImpactSound()
+    {
+        int index = (int)GD.RandRange(0, _ImpactSounds.Length);
+		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+        _AudioStreamPlayer.Stream = _ImpactSounds[index];
+        _AudioStreamPlayer.Play();
+    }
+
+    public void PlayCatPickupSound()
+    {
+        int index = (int)GD.RandRange(0, _CatPickupSounds.Length);
+		_AudioStreamPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+		_AudioStreamPlayer.VolumeDb = (float)GD.RandRange(0.9f, 1.2f);
+        _AudioStreamPlayer.Stream = _CatPickupSounds[index];
+        _AudioStreamPlayer.Play();
     }
 
 	public override void _PhysicsProcess(float delta)
@@ -156,6 +196,7 @@ public class Player : KinematicBody2D
 			{
 				_Velocity.y += -_JumpVelocity;
 				ChangeAnimationState("JumpStart");
+                PlayJumpSound();
 			}
 		}
         else
@@ -171,6 +212,7 @@ public class Player : KinematicBody2D
                 {
                     _Velocity.y = -_WallJumpVerticalVelocity;
                     _Velocity.x = -_WallJumpHorizontalVelocity;
+                    PlayJumpSound();
                 }
             }
             else if (WallRaycast(_LeftWallRaycasts))
@@ -181,6 +223,7 @@ public class Player : KinematicBody2D
                 {
                     _Velocity.y = -_WallJumpVerticalVelocity;
                     _Velocity.x = _WallJumpHorizontalVelocity;
+                    PlayJumpSound();
                 }
             }
             else
@@ -208,6 +251,10 @@ public class Player : KinematicBody2D
 		_Velocity += new Vector2(direction, gravity * delta);
 		_Velocity.x -= _Velocity.x * friction * delta;
 		_Velocity = MoveAndSlide(_Velocity, new Vector2(0, -1));
+        if (!_WasOnGround && IsOnFloor())
+        {
+            PlayImpactSound();
+        }
 
 		_WasOnGround = IsOnFloor();
 	}
