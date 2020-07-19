@@ -31,7 +31,10 @@ public class Player : KinematicBody2D
     [Export]
     private float _WallJumpHorizontalVelocity = 400.0f;
 
-    private float _CatCount = 0;
+    private int _CatCount = 0;
+
+    [Export]
+    private string _HudScenePath = "res://Scenes/HUD.tscn";
 
 	private AnimationPlayer _AnimationPlayer;
 	private Sprite _Sprite;
@@ -42,6 +45,8 @@ public class Player : KinematicBody2D
 
     private Node2D _RightWallRaycasts;
     private Node2D _LeftWallRaycasts;
+
+    private HUD _Hud;
 
 	public override void _Ready()
 	{
@@ -57,6 +62,8 @@ public class Player : KinematicBody2D
         _LeftWallRaycasts = GetNode<Node2D>("LeftWallRaycasts");
 
         _YeetedCatPrefab = (PackedScene)GD.Load("res://Scenes/YeetedCat.tscn");
+
+        _Hud = GetNode<HUD>("HUD");
 	}
 
 	public void ChangeAnimationState(string stateName)
@@ -99,6 +106,8 @@ public class Player : KinematicBody2D
             {
                 ChangeAnimationState("AerialYeet");
                 _YeetedCatDelayTimer.Start();
+                _CatCount--;
+                _Hud.SetCatCount(_CatCount);
             }
 		}
 	}
@@ -106,6 +115,7 @@ public class Player : KinematicBody2D
     public void OnCatPickup()
     {
         _CatCount++;
+        _Hud.SetCatCount(_CatCount);
     }
 
 	public override void _PhysicsProcess(float delta)
@@ -150,7 +160,6 @@ public class Player : KinematicBody2D
             if (_CatCount > 0)
             {
 			    YeetCat();
-                _CatCount--;
             }
 		}
 
