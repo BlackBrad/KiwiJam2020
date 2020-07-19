@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneManager="*res://Scripts/SceneManager.cs"
+BackgroundMusic="*res://Scenes/BackgroundMusic.tscn"
 
 [input]
 
