@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class TitleScreen : Control
+public class LevelSelect : Control
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -12,7 +12,7 @@ public class TitleScreen : Control
 	{
 		
 	}
-
+	// Called when the node enters the scene tree for the first time.
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
@@ -21,7 +21,7 @@ public class TitleScreen : Control
 	private void _LevelChange(string nextLevel)
 	{
 		this.queueScene = nextLevel;
-		FadeIn fadeIn = GetNode<FadeIn>("TopLayer/FadeIn");
+		FadeIn fadeIn = GetNode<FadeIn>("FadeIn");
 		fadeIn.Show();
 		fadeIn.FadeMeIn();
 		
@@ -34,4 +34,9 @@ public class TitleScreen : Control
 		sceneManager.GotoScene(this.queueScene);
 		// Replace with function body.
 	}
+//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+//  public override void _Process(float delta)
+//  {
+//      
+//  }
 }

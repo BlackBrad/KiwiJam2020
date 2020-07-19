@@ -89,9 +89,9 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -650.0
+margin_left = -652.52
 margin_top = -953.673
-margin_right = 650.0
+margin_right = 647.48
 margin_bottom = 1046.33
 color = Color( 0.913725, 0.819608, 0.623529, 1 )
 __meta__ = {

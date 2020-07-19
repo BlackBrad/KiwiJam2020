@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/DynamicFonts/ConcertOne-Regular_68.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Label.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/CustomMenuButton.cs" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="CustomMenuButton" type="Button"]
 margin_right = 784.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 360, 80 )
+rect_min_size = Vector2( 200, 80 )
+custom_styles/focus = SubResource( 1 )
 flat = true
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -14,11 +20,17 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
 custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color_shadow = Color( 1, 0.592157, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.59, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 5
 text = "Label"
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="focus_entered" from="." to="Label" method="_on_CustomMenuButton_focus_entered"]
+[connection signal="focus_exited" from="." to="Label" method="_on_CustomMenuButton_focus_exited"]
+[connection signal="mouse_entered" from="." to="Label" method="_on_CustomMenuButton_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_CustomMenuButton_pressed"]

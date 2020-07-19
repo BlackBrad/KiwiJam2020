@@ -41,8 +41,8 @@ public class Player : KinematicBody2D
 	private Sprite _Sprite;
 	private AnimationTree _AnimationTree;
 	private AnimationNodeStateMachinePlayback _AnimStateMachine;
-    private PackedScene _YeetedCatPrefab;
-    private Timer _YeetedCatDelayTimer;
+	private PackedScene _YeetedCatPrefab;
+	private Timer _YeetedCatDelayTimer;
 
     private Node2D _RightWallRaycasts;
     private Node2D _LeftWallRaycasts;
@@ -54,7 +54,7 @@ public class Player : KinematicBody2D
 		_AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_Sprite = GetNode<Sprite>("Sprite");
 		_AnimationTree = GetNode<AnimationTree>("AnimationTree");
-        _YeetedCatDelayTimer = GetNode<Timer>("YeetedCatDelayTimer");
+		_YeetedCatDelayTimer = GetNode<Timer>("YeetedCatDelayTimer");
 
 		_AnimStateMachine = (AnimationNodeStateMachinePlayback)
 								_AnimationTree.Get("parameters/playback");
@@ -212,13 +212,13 @@ public class Player : KinematicBody2D
 		_WasOnGround = IsOnFloor();
 	}
 
-    public void _OnYeetedCatDelayTimerTimeout()
-    {
-        _Velocity.y = -_JumpVelocity;
+	public void _OnYeetedCatDelayTimerTimeout()
+	{
+		_Velocity.y = -_JumpVelocity;
 
-        var yeetedCat = (YeetedCat)_YeetedCatPrefab.Instance();
-        GetNode("../").AddChild(yeetedCat);
-        yeetedCat.Yeet(GlobalPosition);
-        _YeetedCatDelayTimer.Stop();
-    }
+		var yeetedCat = (YeetedCat)_YeetedCatPrefab.Instance();
+		GetNode("../").AddChild(yeetedCat);
+		yeetedCat.Yeet(GlobalPosition);
+		_YeetedCatDelayTimer.Stop();
+	}
 }
